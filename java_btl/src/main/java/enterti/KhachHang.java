@@ -4,7 +4,9 @@
  */
 package enterti;
 
-public class KhachHang {
+import java.io.Serializable;
+
+public class KhachHang implements Serializable{
     public int id;
     public String ten;
     public String diaChi;

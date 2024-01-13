@@ -1,6 +1,8 @@
 package enterti;
 
-public class HangHoa {
+import java.io.Serializable;
+
+public class HangHoa implements Serializable{
     public int id;
     public String ten;
     public String time;

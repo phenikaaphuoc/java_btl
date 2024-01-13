@@ -1,5 +1,8 @@
 package enterti;
-public class NhanVien {
+
+import java.io.Serializable;
+
+public class NhanVien  implements Serializable{
     public int Id;
     public String ten;
     public String begin;

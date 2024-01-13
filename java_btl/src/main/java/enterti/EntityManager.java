@@ -1,11 +1,18 @@
 package enterti;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 public class EntityManager {
-    private Map<Integer, HangHoa> hangHoaMap;
-    private Map<Integer, NhanVien> nhanVienMap;
-    private Map<Integer, KhachHang> khachHangMap;
+    private static Map<Integer, HangHoa> hangHoaMap;
+    private static Map<Integer, NhanVien> nhanVienMap;
+    private static Map<Integer, KhachHang> khachHangMap;
 
     public EntityManager() {
         this.hangHoaMap = new HashMap<>();
@@ -51,39 +58,89 @@ public class EntityManager {
     public void removeKhachHangById(int id) {
         khachHangMap.remove(id);
     }
+    public void saveAllToFile() {
+        String fileName = "nhanvien.dat";
+        try (ObjectOutputStream oos = new ObjectOutputStream(
+                new BufferedOutputStream(new FileOutputStream(fileName)))) {
+            oos.writeObject(nhanVienMap);
+            System.out.println("Đã ghi dữ liệu thành công vào file " + fileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        fileName = "hanghoa.dat";
+        try (ObjectOutputStream oos = new ObjectOutputStream(
+                new BufferedOutputStream(new FileOutputStream(fileName)))) {
+            oos.writeObject(hangHoaMap);
+            System.out.println("Đã ghi dữ liệu thành công vào file " + fileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        fileName = "khachhang.dat";
+        try (ObjectOutputStream oos = new ObjectOutputStream(
+                new BufferedOutputStream(new FileOutputStream(fileName)))) {
+            oos.writeObject(khachHangMap);
+            System.out.println("Đã ghi dữ liệu thành công vào file " + fileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     
     
+    
+    
+    public void loadAllFromFile() {
+        loadFromFile("hanghoa.dat", hangHoaMap);
+        loadFromFile("nhanvien.dat", nhanVienMap);
+        loadFromFile("khachhang.dat", khachHangMap);
+
+    }
+
+    private <T> void loadFromFile(String fileName, Map<Integer, T> dataMap) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
+            @SuppressWarnings("unchecked")
+            Map<Integer, T> loadedData = (Map<Integer, T>) ois.readObject();
+            dataMap.clear();
+            dataMap.putAll(loadedData);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     // Các phương thức khác của lớp EntityManager
 
     public static void main(String[] args) {
-        EntityManager entityManager = new EntityManager();
-
-        // Thêm các đối tượng vào EntityManager
-        entityManager.addHangHoa(new HangHoa(1, "Sách", "2024-01-13", 50.0f, 101));
+       EntityManager entityManager = new EntityManager();
+       entityManager.addHangHoa(new HangHoa(1, "Sách", "2024-01-13", 50.0f, 101));
         entityManager.addNhanVien(new NhanVien(101, "John", "2024-01-13", 5000.0f));
         entityManager.addKhachHang(new KhachHang(201, "Alice", "123 Main Street", "0123456789"));
 
-        // Tìm kiếm và xóa đối tượng theo ID
-        HangHoa foundHangHoa = entityManager.findHangHoaById(1);
-        if (foundHangHoa != null) {
-            System.out.println("Tìm thấy hàng hóa: " + foundHangHoa.getTen());
-            entityManager.removeHangHoaById(1);
-            System.out.println("Hàng hóa đã được xóa.");
-        }
+        // Save data to files
+        entityManager.saveAllToFile();
 
-        NhanVien foundNhanVien = entityManager.findNhanVienById(101);
-        if (foundNhanVien != null) {
-            System.out.println("Tìm thấy nhân viên: " + foundNhanVien.getTen());
-            entityManager.removeNhanVienById(101);
-            System.out.println("Nhân viên đã được xóa.");
-        }
+        // Clear existing data
+        hangHoaMap.clear();
+        nhanVienMap.clear();
+        khachHangMap.clear();
 
-        KhachHang foundKhachHang = entityManager.findKhachHangById(201);
-        if (foundKhachHang != null) {
-            System.out.println("Tìm thấy khách hàng: " + foundKhachHang.getTen());
-            entityManager.removeKhachHangById(201);
-            System.out.println("Khách hàng đã được xóa.");
+        // Load data from files
+        entityManager.loadAllFromFile();
+
+        // Print loaded data
+        System.out.println("Loaded HangHoa Map:");
+        printMap(hangHoaMap);
+
+        System.out.println("\nLoaded NhanVien Map:");
+        printMap(nhanVienMap);
+
+        System.out.println("\nLoaded KhachHang Map:");
+        printMap(khachHangMap);
+    }
+    private static <T> void printMap(Map<Integer, T> map) {
+        for (Map.Entry<Integer, T> entry : map.entrySet()) {
+            System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
         }
     }
 }
