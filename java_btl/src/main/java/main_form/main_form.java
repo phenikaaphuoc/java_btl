@@ -341,9 +341,17 @@ public class main_form extends javax.swing.JFrame {
     }//GEN-LAST:event_idKHActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int id = idKH.getText();
-        
-        Object[] rowData = {khachHang.getId(), khachHang.getTen(), khachHang.getDiaChi(), khachHang.getSdt()};
+    try {
+        // Get data from user input or any other source
+        int id = Integer.parseInt(idKH.getText());
+        String ten = tenKH.getText();
+        String diaChi = dcKH.getText();
+        String sdt = sdtKH.getText();
+        controller.addKhachHang(jtKH, id, ten, diaChi, sdt);
+    } catch (NumberFormatException e) {
+        controller.showMessage(e.getMessage());
+    }
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

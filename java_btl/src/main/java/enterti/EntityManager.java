@@ -90,6 +90,20 @@ public class EntityManager {
             e.printStackTrace();
         }
     }
+     private static int findMaxKey(Map<Integer, ?> map) {
+        if (map == null || map.isEmpty()) {
+            return 0;
+        }
+
+        int maxKey = Integer.MIN_VALUE;
+        for (int key : map.keySet()) {
+            if (key > maxKey) {
+                maxKey = key;
+            }
+        }
+
+        return maxKey;
+    }
 
     
     
