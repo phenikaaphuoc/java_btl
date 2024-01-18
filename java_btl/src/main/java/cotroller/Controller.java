@@ -46,6 +46,7 @@ public class Controller {
             // Remove the selected row from the table
             DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
             tableModel.removeRow(selectedRow);
+            entity.removeHangHoaById(selectedId);
         }
     }
     public void addKhachHang(JTable table,int id ,String ten,String diaChi ,String sdt ){

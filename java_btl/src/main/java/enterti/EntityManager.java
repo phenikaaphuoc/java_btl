@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -61,6 +62,19 @@ public final class EntityManager {
 
     public void removeKhachHangById(int id) {
         khachHangMap.remove(id);
+    }
+    public static void removeHangHoaByIdKH(int idKH) {
+        Iterator<Map.Entry<Integer, HangHoa>> iterator = hangHoaMap.entrySet().iterator();
+
+        while (iterator.hasNext()) {
+            Map.Entry<Integer, HangHoa> entry = iterator.next();
+            HangHoa hangHoa = entry.getValue();
+
+            if (hangHoa.idKH == idKH) {
+                iterator.remove();
+                // Optionally, you can also perform additional actions here if needed.
+            }
+        }
     }
     public void saveAllToFile() {
         String fileName = "nhanvien.dat";

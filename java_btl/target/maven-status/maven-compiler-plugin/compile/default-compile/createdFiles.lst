@@ -1,5 +1,6 @@
 graphic\ShadowRenderer.class
 main_form\BoxShadowPanel.class
+main_form\main_form$6.class
 main_form\main_form$2.class
 graphic\ShadowType.class
 enterti\NhanVien.class
@@ -12,4 +13,5 @@ graphic\PanelShadow.class
 enterti\KhachHang.class
 graphic\GraphicsUtilities.class
 cotroller\Controller.class
+main_form\main_form$5.class
 main_form\main_form$1.class

@@ -112,7 +112,7 @@ public class main_form extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        luuKH = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
@@ -122,6 +122,7 @@ public class main_form extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         dkTKKH = new javax.swing.JLabel();
         slTKKH = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
@@ -233,6 +234,11 @@ public class main_form extends javax.swing.JFrame {
         });
 
         jButton2.setText("Sửa ");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Xóa");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -241,11 +247,11 @@ public class main_form extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Lưu");
+        luuKH.setText("Lưu");
 
         jLabel1.setText("Tìm kiếm theo");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Tên" }));
 
         jButton5.setText("Tìm Kiếm");
 
@@ -258,6 +264,13 @@ public class main_form extends javax.swing.JFrame {
         dkTKKH.setText("jLabel6");
 
         slTKKH.setText("jLabel7");
+
+        jButton6.setText("Làm Mới ");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -272,8 +285,10 @@ public class main_form extends javax.swing.JFrame {
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(55, 55, 55)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addComponent(jButton6)
                         .addGap(50, 50, 50)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(luuKH, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,11 +347,13 @@ public class main_form extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(slTKKH))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1)
+                        .addComponent(jButton2)
+                        .addComponent(jButton3))
+                    .addComponent(luuKH)
+                    .addComponent(jButton6))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
@@ -395,6 +412,27 @@ public class main_form extends javax.swing.JFrame {
         controller.entity.saveAllToFile();
     }//GEN-LAST:event_formWindowClosing
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        cleanKHInput();
+        updateStatic();
+        controller.updateID(idKH);
+        luuKH.setVisible(false);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+         int selectedRow = jtKH.getSelectedRow();
+          
+        if (selectedRow != -1) { // Check if any row is selected
+            String id = String.valueOf(jtKH.getValueAt(selectedRow, 0));
+            String ten = String.valueOf(jtKH.getValueAt(selectedRow, 1));
+            String diachi = String.valueOf(jtKH.getValueAt(selectedRow, 2));
+            String sdt = String.valueOf(jtKH.getValueAt(selectedRow, 3));
+            fillKHInput(id, ten, diachi, sdt);
+            luuKH.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -403,6 +441,12 @@ public class main_form extends javax.swing.JFrame {
         tenKH.setText("");
         sdtKH.setText("");
         dcKH.setText("");
+    }
+    public void fillKHInput(String id,String ten ,String diachi,String sdt){
+        idKH.setText(id);
+        tenKH.setText(ten);
+        sdtKH.setText(diachi);
+        dcKH.setText(sdt);
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -443,8 +487,8 @@ public class main_form extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -467,6 +511,7 @@ public class main_form extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTable jtKH;
+    private javax.swing.JButton luuKH;
     private javax.swing.JTextField sdtKH;
     private javax.swing.JLabel slTKKH;
     private javax.swing.JTextField tenKH;
