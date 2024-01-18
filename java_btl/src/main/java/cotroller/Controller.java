@@ -6,7 +6,10 @@ package cotroller;
 
 
 import enterti.EntityManager;
+import enterti.HangHoa;
 import enterti.KhachHang;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -18,7 +21,13 @@ public class Controller {
     public Controller() {
         entity = new EntityManager();
     }
-        public DefaultTableModel updateKhachHangTable(Map<Integer, KhachHang> khachHangMap, JTable table) {
+    public String getCurrentTime(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        Date currentDate = new Date();
+        String formattedDate = dateFormat.format(currentDate);
+        return formattedDate;
+    }
+    public DefaultTableModel updateKhachHangTable(Map<Integer, KhachHang> khachHangMap, JTable table) {
         DefaultTableModel tableModel = new DefaultTableModel();
         tableModel.addColumn("ID");
         tableModel.addColumn("Tên");
@@ -27,6 +36,23 @@ public class Controller {
 
         for (KhachHang khachHang : khachHangMap.values()) {
             Object[] rowData = {khachHang.getId(), khachHang.getTen(), khachHang.getDiaChi(), khachHang.getSdt()};
+            tableModel.addRow(rowData);
+        }
+
+        table.setModel(tableModel); // Set the new model to the table directly
+
+        return tableModel;
+    }
+        public DefaultTableModel updateHangHoaTable(Map<Integer, HangHoa> hangHoaMap, JTable table) {
+        DefaultTableModel tableModel = new DefaultTableModel();
+        tableModel.addColumn("ID");
+        tableModel.addColumn("Tên");
+        tableModel.addColumn("Thời gian vào");
+        tableModel.addColumn("Giá");
+        tableModel.addColumn("IDKH");
+
+        for (HangHoa hangHoa : hangHoaMap.values()) {
+            Object[] rowData = {hangHoa.getId(), hangHoa.getTen(), hangHoa.getTime(), hangHoa.getGia(),hangHoa.getIdKH()};
             tableModel.addRow(rowData);
         }
 
@@ -46,7 +72,7 @@ public class Controller {
             // Remove the selected row from the table
             DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
             tableModel.removeRow(selectedRow);
-            entity.removeHangHoaById(selectedId);
+            entity.removeHangHoaByIdKH(selectedId);
         }
     }
     public void addKhachHang(JTable table,int id ,String ten,String diaChi ,String sdt ){
@@ -68,6 +94,18 @@ public class Controller {
             showMessage(e.getMessage()); // Handle the exception appropriately
         }   
    }
+    public void addHangHoa(JTable table, int id,  String ten,String  time, float gia,int idKH){
+        DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+        try {
+            HangHoa hanghoa = new HangHoa(id, ten, time, gia, idKH);
+            Object[] rowData = {hanghoa.getId(), hanghoa.getTen(), hanghoa.getTime(), hanghoa.getGia(),hanghoa.getidKH()};
+            tableModel.addRow(rowData);
+            entity.hangHoaMap.put(id, hanghoa);
+        } catch (IllegalArgumentException e) {
+            // Handle the case where idKH.getText() cannot be parsed as an integer
+            showMessage(e.getMessage()); // Handle the exception appropriately
+        }   
+    }
     
     public void suaKhachHang(JTable table,int id ,String ten,String diaChi ,String sdt ){
         

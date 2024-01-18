@@ -1,10 +1,13 @@
 graphic\ShadowRenderer.class
+main_form\main_form$10.class
 main_form\BoxShadowPanel.class
 main_form\main_form$7.class
 main_form\main_form$6.class
 main_form\main_form$2.class
 graphic\ShadowType.class
+main_form\main_form$8.class
 enterti\NhanVien.class
+main_form\main_form$11.class
 main_form\main_form$3.class
 enterti\HangHoa.class
 main_form\main_form.class
@@ -12,7 +15,9 @@ main_form\main_form$4.class
 enterti\EntityManager.class
 graphic\PanelShadow.class
 enterti\KhachHang.class
+main_form\main_form$9.class
 graphic\GraphicsUtilities.class
+main_form\main_form$12.class
 cotroller\Controller.class
 main_form\main_form$5.class
 main_form\main_form$1.class
