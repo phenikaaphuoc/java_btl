@@ -50,8 +50,19 @@ public class main_form extends javax.swing.JFrame {
     }
     public void init_table(){
         controller.updateKhachHangTable(controller.entity.khachHangMap, jtKH);
+        updateStatic();
     }
-
+    public void updateStatic(){
+        int slkhach = controller.entity.khachHangMap.size();
+        slTKKH.setText(String.valueOf(slkhach));
+        int don = controller.entity.hangHoaMap.size();
+        if(slkhach==0){
+            dkTKKH.setText(String.valueOf(0));
+        }
+        else{
+             dkTKKH.setText(String.valueOf(don/slkhach));
+        }
+    }
     public JTextField getDcKH() {
         return dcKH;
     }
@@ -109,8 +120,8 @@ public class main_form extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        dkTKKH = new javax.swing.JLabel();
+        slTKKH = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
@@ -244,9 +255,9 @@ public class main_form extends javax.swing.JFrame {
 
         jLabel4.setText("Tổng Số Lượng Khách");
 
-        jLabel6.setText("jLabel6");
+        dkTKKH.setText("jLabel6");
 
-        jLabel7.setText("jLabel7");
+        slTKKH.setText("jLabel7");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -290,8 +301,8 @@ public class main_form extends javax.swing.JFrame {
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(31, 31, 31)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(dkTKKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(slTKKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap(533, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -315,11 +326,11 @@ public class main_form extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel6))
+                            .addComponent(dkTKKH))
                         .addGap(27, 27, 27)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel7))))
+                            .addComponent(slTKKH))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -359,6 +370,7 @@ public class main_form extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         controller.deleteSelectedRow(jtKH);
+        updateStatic();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -369,11 +381,14 @@ public class main_form extends javax.swing.JFrame {
         String diaChi = dcKH.getText();
         String sdt = sdtKH.getText();
         controller.addKhachHang(jtKH, id, ten, diaChi, sdt);
-        cleanKHInput();
+       
     } catch (NumberFormatException e) {
         controller.showMessage(e.getMessage());
+        return ;
     }
-    
+     cleanKHInput();
+     controller.updateID(idKH);
+     updateStatic();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -423,6 +438,7 @@ public class main_form extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField dcKH;
+    private javax.swing.JLabel dkTKKH;
     private javax.swing.JLabel idKH;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -436,8 +452,6 @@ public class main_form extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
@@ -454,6 +468,7 @@ public class main_form extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTable jtKH;
     private javax.swing.JTextField sdtKH;
+    private javax.swing.JLabel slTKKH;
     private javax.swing.JTextField tenKH;
     // End of variables declaration//GEN-END:variables
 }
