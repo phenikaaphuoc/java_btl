@@ -792,7 +792,14 @@ public class main_form extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void luuHHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_luuHHActionPerformed
-        // TODO add your handling code here:
+        try {
+                controller.suaHangHoa(jtHH,  idHH.getText(), tenHH.getText(), tgHH.getText(), giaHH.getText(), Integer.parseInt((String) cbIDKH.getSelectedItem()));
+
+        } catch (NumberFormatException e) {
+                controller.showMessage(e.getMessage());
+                return ;
+       }
+        reloadAllHH();
     }//GEN-LAST:event_luuHHActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed

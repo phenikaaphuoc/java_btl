@@ -94,6 +94,7 @@ public class Controller {
             showMessage(e.getMessage()); // Handle the exception appropriately
         }   
    }
+    
     public void addHangHoa(JTable table, int id,  String ten,String  time, float gia,int idKH){
         DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
         try {
@@ -124,6 +125,28 @@ public class Controller {
             }
             tableModel.addRow(rowData);
         } catch (IllegalArgumentException e) {
+            // Handle the case where idKH.getText() cannot be parsed as an integer
+            showMessage(e.getMessage()); // Handle the exception appropriately
+        }   
+   }
+    public void suaHangHoa(JTable table,String id_string ,String ten,String time ,String gia_string, int idKH ){
+        
+        DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+        
+        try {
+            int id = Integer.parseInt(id_string);
+            float gia = Float.parseFloat(gia_string);
+            HangHoa hanghoa = new HangHoa(id, ten, time, gia, idKH);
+            Object[] rowData = {hanghoa.getId(), hanghoa.getTen(), hanghoa.getTime(), hanghoa.getGia(),hanghoa.getidKH()};
+            entity.hangHoaMap.remove(id);
+            entity.hangHoaMap.put(id, hanghoa);
+            for (int i = tableModel.getRowCount() - 1; i >= 0; i--) {
+                if (Integer.parseInt(tableModel.getValueAt(i, 0).toString()) == id) {
+                    tableModel.removeRow(i);
+                }
+            }
+            tableModel.addRow(rowData);
+        } catch (IllegalArgumentException e ) {
             // Handle the case where idKH.getText() cannot be parsed as an integer
             showMessage(e.getMessage()); // Handle the exception appropriately
         }   
