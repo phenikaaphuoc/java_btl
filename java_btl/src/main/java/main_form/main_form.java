@@ -484,11 +484,12 @@ public class main_form extends javax.swing.JFrame {
                     .addComponent(tenHH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(idHH))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(Gia)
-                    .addComponent(giaHH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tgHH, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tgHH, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel12)
+                        .addComponent(Gia)
+                        .addComponent(giaHH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -693,9 +694,11 @@ public class main_form extends javax.swing.JFrame {
         controller.deleteSelectedRow(jtKH);
         updateStatic();
         reloadAllHH();
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void themKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themKHActionPerformed
+
     try {
         // Get data from user input or any other source
         int id = Integer.parseInt(idKH.getText());
@@ -703,15 +706,20 @@ public class main_form extends javax.swing.JFrame {
         String diaChi = dcKH.getText();
         String sdt = sdtKH.getText();
         controller.addKhachHang(jtKH, id, ten, diaChi, sdt);
-       
+        
+        
     } catch (NumberFormatException e) {
         controller.showMessage(e.getMessage());
-        return ;
+        
+       
     }
-     cleanKHInput();
-     controller.updateID(idKH);
-     updateStatic();
-     reloadAllHH();
+     
+    
+   
+    cleanKHInput();
+    controller.updateID(idKH);
+    updateStatic();
+    reloadAllHH();
     }//GEN-LAST:event_themKHActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -725,7 +733,7 @@ public class main_form extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         int selectedRow = jtKH.getSelectedRow();
+        int selectedRow = jtKH.getSelectedRow();
           
         if (selectedRow != -1) { // Check if any row is selected
             String id = String.valueOf(jtKH.getValueAt(selectedRow, 0));
@@ -740,21 +748,25 @@ public class main_form extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void luuKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_luuKHActionPerformed
-        
+        boolean check = true;
         try {
-       
-                    
-                controller.suaKhachHang(jtKH,  Integer.parseInt(idKH.getText()), tenKH.getText(), dcKH.getText(), sdtKH.getText());
 
-            } catch (NumberFormatException e) {
+                controller.suaKhachHang(jtKH,  Integer.parseInt(idKH.getText()), tenKH.getText(), dcKH.getText(), sdtKH.getText());
+                themKH.setVisible(true);
+                reloadAll();
+           
+        } catch (NumberFormatException e) {
                 controller.showMessage(e.getMessage());
-                return ;
+                check = false;
        }
-        themKH.setVisible(true);
-        reloadAll();
+        if (check == true){
+            controller.showMessage("Sửa thành công");
+        }
+      
     }//GEN-LAST:event_luuKHActionPerformed
 
     private void themHHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themHHActionPerformed
+    boolean check = true;
     try {
         // Get data from user input or any other source
         int id = Integer.parseInt(idHH.getText());
@@ -766,9 +778,12 @@ public class main_form extends javax.swing.JFrame {
        
     } catch (NumberFormatException e) {
         controller.showMessage(e.getMessage());
-        return ;
+        check = false;
     }
     reloadAllHH();
+    if (check == true){
+            controller.showMessage("Sửa thành công");
+        }
     }//GEN-LAST:event_themHHActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -792,13 +807,17 @@ public class main_form extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void luuHHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_luuHHActionPerformed
+        boolean check = true;
         try {
                 controller.suaHangHoa(jtHH,  idHH.getText(), tenHH.getText(), tgHH.getText(), giaHH.getText(), Integer.parseInt((String) cbIDKH.getSelectedItem()));
 
         } catch (NumberFormatException e) {
                 controller.showMessage(e.getMessage());
-                return ;
+                check = false;
        }
+        if (check == true){
+            controller.showMessage("Sửa thành công");
+        }
         reloadAllHH();
     }//GEN-LAST:event_luuHHActionPerformed
 
@@ -819,8 +838,8 @@ public class main_form extends javax.swing.JFrame {
     public void fillKHInput(String id,String ten ,String diachi,String sdt){
         idKH.setText(id);
         tenKH.setText(ten);
-        sdtKH.setText(diachi);
-        dcKH.setText(sdt);
+        dcKH.setText(diachi);
+        sdtKH.setText(sdt);
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import main_form.main_form;
+import static main_form.main_form.controller;
 public class Controller {
     static public EntityManager entity ;
     public Controller() {
@@ -73,16 +74,14 @@ public class Controller {
             DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
             tableModel.removeRow(selectedRow);
             entity.removeHangHoaByIdKH(selectedId);
+            controller.showMessage("Xóa thành công ");
         }
     }
     public void addKhachHang(JTable table,int id ,String ten,String diaChi ,String sdt ){
         
         DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+        boolean check = true;
         try {
-            // Get data from user input or any other source
-
-
-            // Create a KhachHang object
             KhachHang khachHang = new KhachHang(id, ten, diaChi, sdt);
 
             // Add data to jtKH
@@ -91,8 +90,14 @@ public class Controller {
             entity.khachHangMap.put(id, khachHang);
         } catch (IllegalArgumentException e) {
             // Handle the case where idKH.getText() cannot be parsed as an integer
-            showMessage(e.getMessage()); // Handle the exception appropriately
-        }   
+            showMessage(e.getMessage());
+            check = false;// Handle the exception appropriately
+        }
+        if(check == true){
+             controller.showMessage("Thêm thành công");
+        }
+        
+
    }
     
     public void addHangHoa(JTable table, int id,  String ten,String  time, float gia,int idKH){

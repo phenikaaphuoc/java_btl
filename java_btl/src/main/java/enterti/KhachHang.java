@@ -50,12 +50,17 @@ public class KhachHang implements Serializable{
     }
 
     public void setDiaChi(String diaChi) {
+        if (diaChi == null || diaChi.length() < 1 || diaChi.length() > 10) {
+            throw new IllegalArgumentException("Địa chỉ khách hàng phải là một chuỗi có độ dài từ 1 đến 10 ký tự.");
+        }
         // Bạn có thể thêm kiểm tra địa chỉ ở đây nếu cần thiết
         this.diaChi = diaChi;
     }
 
     public void setSdt(String sdt) {
-        // Bạn có thể thêm kiểm tra số điện thoại ở đây nếu cần thiết
+        if (sdt == null || sdt.length() != 10 || !sdt.matches("\\d+")) {
+            throw new IllegalArgumentException("Số điện thoại phải có độ dài là 10 ký tự và chỉ chứa các chữ số.");
+        }
         this.sdt = sdt;
     }
 
