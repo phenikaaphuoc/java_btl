@@ -45,7 +45,7 @@ public class main_form extends javax.swing.JFrame {
         initComponents();
         controller = new Controller();
         init_table();
-        controller.updateID(this.getIdKH());
+        reloadAll();
         
     }
     public void init_table(){
@@ -62,6 +62,14 @@ public class main_form extends javax.swing.JFrame {
         else{
              dkTKKH.setText(String.valueOf(don/slkhach));
         }
+    }
+    public void reloadAll(){
+        cleanKHInput();
+        updateStatic();
+        controller.updateID(idKH);
+        luuKH.setVisible(false);
+        themKH.setVisible(true);
+        
     }
     public JTextField getDcKH() {
         return dcKH;
@@ -109,7 +117,7 @@ public class main_form extends javax.swing.JFrame {
         jPanel5 = new PanelShadow();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtKH = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        themKH = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         luuKH = new javax.swing.JButton();
@@ -226,10 +234,10 @@ public class main_form extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jButton1.setText("Thêm");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        themKH.setText("Thêm");
+        themKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                themKHActionPerformed(evt);
             }
         });
 
@@ -248,6 +256,11 @@ public class main_form extends javax.swing.JFrame {
         });
 
         luuKH.setText("Lưu");
+        luuKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                luuKHActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Tìm kiếm theo");
 
@@ -280,7 +293,7 @@ public class main_form extends javax.swing.JFrame {
                 .addGap(106, 106, 106)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(themKH, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(54, 54, 54)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(55, 55, 55)
@@ -349,7 +362,7 @@ public class main_form extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1)
+                        .addComponent(themKH)
                         .addComponent(jButton2)
                         .addComponent(jButton3))
                     .addComponent(luuKH)
@@ -390,7 +403,7 @@ public class main_form extends javax.swing.JFrame {
         updateStatic();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void themKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themKHActionPerformed
     try {
         // Get data from user input or any other source
         int id = Integer.parseInt(idKH.getText());
@@ -406,7 +419,7 @@ public class main_form extends javax.swing.JFrame {
      cleanKHInput();
      controller.updateID(idKH);
      updateStatic();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_themKHActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         controller.entity.saveAllToFile();
@@ -414,10 +427,8 @@ public class main_form extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        cleanKHInput();
-        updateStatic();
-        controller.updateID(idKH);
-        luuKH.setVisible(false);
+        reloadAll();
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -429,9 +440,26 @@ public class main_form extends javax.swing.JFrame {
             String diachi = String.valueOf(jtKH.getValueAt(selectedRow, 2));
             String sdt = String.valueOf(jtKH.getValueAt(selectedRow, 3));
             fillKHInput(id, ten, diachi, sdt);
+            
             luuKH.setVisible(true);
+            themKH.setVisible(false);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void luuKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_luuKHActionPerformed
+        
+        try {
+       
+                    
+                controller.suaKhachHang(jtKH,  Integer.parseInt(idKH.getText()), tenKH.getText(), dcKH.getText(), sdtKH.getText());
+
+            } catch (NumberFormatException e) {
+                controller.showMessage(e.getMessage());
+                return ;
+       }
+        themKH.setVisible(true);
+        reloadAll();
+    }//GEN-LAST:event_luuKHActionPerformed
 
     /**
      * @param args the command line arguments
@@ -484,7 +512,6 @@ public class main_form extends javax.swing.JFrame {
     private javax.swing.JTextField dcKH;
     private javax.swing.JLabel dkTKKH;
     private javax.swing.JLabel idKH;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
@@ -515,5 +542,6 @@ public class main_form extends javax.swing.JFrame {
     private javax.swing.JTextField sdtKH;
     private javax.swing.JLabel slTKKH;
     private javax.swing.JTextField tenKH;
+    private javax.swing.JButton themKH;
     // End of variables declaration//GEN-END:variables
 }

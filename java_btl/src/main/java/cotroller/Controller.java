@@ -68,6 +68,28 @@ public class Controller {
             showMessage(e.getMessage()); // Handle the exception appropriately
         }   
    }
+    
+    public void suaKhachHang(JTable table,int id ,String ten,String diaChi ,String sdt ){
+        
+        DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+        
+        try {
+            
+            KhachHang khachHang = new KhachHang(id, ten, diaChi, sdt);
+            Object[] rowData = {khachHang.getId(), khachHang.getTen(), khachHang.getDiaChi(), khachHang.getSdt()};
+            entity.khachHangMap.remove(id);
+            entity.khachHangMap.put(id, khachHang);
+            for (int i = tableModel.getRowCount() - 1; i >= 0; i--) {
+                if (Integer.parseInt(tableModel.getValueAt(i, 0).toString()) == id) {
+                    tableModel.removeRow(i);
+                }
+            }
+            tableModel.addRow(rowData);
+        } catch (IllegalArgumentException e) {
+            // Handle the case where idKH.getText() cannot be parsed as an integer
+            showMessage(e.getMessage()); // Handle the exception appropriately
+        }   
+   }
    public void showMessage(String mess){
        JOptionPane.showMessageDialog(null, mess, "Information", JOptionPane.INFORMATION_MESSAGE);
    }
