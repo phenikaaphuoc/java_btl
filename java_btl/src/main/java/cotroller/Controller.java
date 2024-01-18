@@ -61,6 +61,7 @@ public class Controller {
             // Add data to jtKH
             Object[] rowData = {khachHang.getId(), khachHang.getTen(), khachHang.getDiaChi(), khachHang.getSdt()};
             tableModel.addRow(rowData);
+            entity.khachHangMap.put(id, khachHang);
         } catch (IllegalArgumentException e) {
             // Handle the case where idKH.getText() cannot be parsed as an integer
             showMessage(e.getMessage()); // Handle the exception appropriately

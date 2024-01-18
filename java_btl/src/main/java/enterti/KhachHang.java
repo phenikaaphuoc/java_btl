@@ -61,13 +61,5 @@ public class KhachHang implements Serializable{
 
     // Các phương thức khác của lớp KhachHang
 
-    public static void main(String[] args) {
-        // Sử dụng lớp KhachHang
-        try {
-            KhachHang khachHang = new KhachHang(201, "Alice", "123 Main Street", "0123456789");
-            System.out.println("Khách hàng được tạo thành công.");
-        } catch (IllegalArgumentException e) {
-            System.out.println("Lỗi: " + e.getMessage());
-        }
-    }
+
 }

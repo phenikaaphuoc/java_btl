@@ -11,7 +11,7 @@ import java.util.Map;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class EntityManager {
+public final class EntityManager {
     public static Map<Integer, HangHoa> hangHoaMap;
     public static Map<Integer, NhanVien> nhanVienMap;
     public static Map<Integer, KhachHang> khachHangMap;
@@ -122,6 +122,7 @@ public class EntityManager {
             Map<Integer, T> loadedData = (Map<Integer, T>) ois.readObject();
             dataMap.clear();
             dataMap.putAll(loadedData);
+            System.err.println("Doc thanh cong");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
