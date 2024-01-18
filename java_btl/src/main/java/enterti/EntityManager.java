@@ -8,17 +8,21 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class EntityManager {
-    private static Map<Integer, HangHoa> hangHoaMap;
-    private static Map<Integer, NhanVien> nhanVienMap;
-    private static Map<Integer, KhachHang> khachHangMap;
+    public static Map<Integer, HangHoa> hangHoaMap;
+    public static Map<Integer, NhanVien> nhanVienMap;
+    public static Map<Integer, KhachHang> khachHangMap;
 
     public EntityManager() {
         this.hangHoaMap = new HashMap<>();
         this.nhanVienMap = new HashMap<>();
         this.khachHangMap = new HashMap<>();
+        loadAllFromFile();
     }
+    
 
     // Phương thức thêm đối tượng vào EntityManager
     public void addHangHoa(HangHoa hangHoa) {
@@ -108,8 +112,7 @@ public class EntityManager {
             e.printStackTrace();
         }
     }
-
-    // Các phương thức khác của lớp EntityManager
+ 
 
     public static void main(String[] args) {
        EntityManager entityManager = new EntityManager();
