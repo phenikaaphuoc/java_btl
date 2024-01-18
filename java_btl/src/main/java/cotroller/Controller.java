@@ -8,9 +8,11 @@ package cotroller;
 import enterti.EntityManager;
 import enterti.KhachHang;
 import java.util.Map;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import main_form.main_form;
 public class Controller {
     static public EntityManager entity ;
     public Controller() {
@@ -62,11 +64,14 @@ public class Controller {
         } catch (IllegalArgumentException e) {
             // Handle the case where idKH.getText() cannot be parsed as an integer
             showMessage(e.getMessage()); // Handle the exception appropriately
-        }
-       
+        }   
    }
    public void showMessage(String mess){
        JOptionPane.showMessageDialog(null, mess, "Information", JOptionPane.INFORMATION_MESSAGE);
+   }
+   public void updateID(JLabel label_kh){
+       int idKH = entity.getMaxIDKH(entity.khachHangMap);
+       label_kh.setText(String.valueOf(idKH));
    }
     
 }

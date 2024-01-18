@@ -90,7 +90,7 @@ public class EntityManager {
             e.printStackTrace();
         }
     }
-     private static int findMaxKey(Map<Integer, ?> map) {
+    public static int getMaxIDKH(Map<Integer, ?> map) {
         if (map == null || map.isEmpty()) {
             return 0;
         }
@@ -102,7 +102,7 @@ public class EntityManager {
             }
         }
 
-        return maxKey;
+        return maxKey+1;
     }
 
     

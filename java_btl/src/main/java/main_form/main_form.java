@@ -11,6 +11,9 @@ import javax.swing.JPanel;
 import graphic.PanelShadow;
 import enterti.*;
 import cotroller.Controller;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 class BoxShadowPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
@@ -42,10 +45,31 @@ public class main_form extends javax.swing.JFrame {
         initComponents();
         controller = new Controller();
         init_table();
+        controller.updateID(this.getIdKH());
         
     }
     public void init_table(){
         controller.updateKhachHangTable(controller.entity.khachHangMap, jtKH);
+    }
+
+    public JTextField getDcKH() {
+        return dcKH;
+    }
+
+    public JLabel getIdKH() {
+        return idKH;
+    }
+
+    public JTable getJtKH() {
+        return jtKH;
+    }
+
+    public JTextField getSdtKH() {
+        return sdtKH;
+    }
+
+    public JTextField getTenKH() {
+        return tenKH;
     }
     
     /**
@@ -64,13 +88,13 @@ public class main_form extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jPanel3 = new PanelShadow();
         jLabel5 = new javax.swing.JLabel();
-        idKH = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         tenKH = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         dcKH = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         sdtKH = new javax.swing.JTextField();
+        idKH = new javax.swing.JLabel();
         jPanel5 = new PanelShadow();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtKH = new javax.swing.JTable();
@@ -105,17 +129,13 @@ public class main_form extends javax.swing.JFrame {
 
         jLabel5.setText("ID");
 
-        idKH.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idKHActionPerformed(evt);
-            }
-        });
-
         jLabel8.setText("Tên");
 
         jLabel9.setText("Địa chỉ");
 
         jLabel10.setText("SĐT");
+
+        idKH.setText("jLabel11");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -123,7 +143,7 @@ public class main_form extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(55, 55, 55)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -131,7 +151,7 @@ public class main_form extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(idKH, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(idKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(49, 49, 49)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -140,7 +160,7 @@ public class main_form extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(tenKH)
                     .addComponent(sdtKH, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,9 +168,9 @@ public class main_form extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(idKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(tenKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tenKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idKH))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -336,10 +356,6 @@ public class main_form extends javax.swing.JFrame {
         controller.deleteSelectedRow(jtKH);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void idKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idKHActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idKHActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     try {
         // Get data from user input or any other source
@@ -348,6 +364,7 @@ public class main_form extends javax.swing.JFrame {
         String diaChi = dcKH.getText();
         String sdt = sdtKH.getText();
         controller.addKhachHang(jtKH, id, ten, diaChi, sdt);
+        cleanKHInput();
     } catch (NumberFormatException e) {
         controller.showMessage(e.getMessage());
     }
@@ -357,6 +374,12 @@ public class main_form extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    public void cleanKHInput(){
+        idKH.setText("");
+        tenKH.setText("");
+        sdtKH.setText("");
+        dcKH.setText("");
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -391,7 +414,7 @@ public class main_form extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField dcKH;
-    private javax.swing.JTextField idKH;
+    private javax.swing.JLabel idKH;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
