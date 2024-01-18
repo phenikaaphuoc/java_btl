@@ -506,8 +506,8 @@
                                       </Group>
                                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="dkTKKH1" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="slTKKH1" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="tkTSHH" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="tkGTBHH" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -540,12 +540,12 @@
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="dkTKKH1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tkTSHH" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="slTKKH1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tkGTBHH" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -809,20 +809,20 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel15">
               <Properties>
-                <Property name="text" type="java.lang.String" value="TB S&#x1ed1; L&#x1b0;&#x1ee3;ng &#x110;&#x1a1;n/Kh&#xe1;ch"/>
+                <Property name="text" type="java.lang.String" value="T&#x1ed5;ng S&#x1ed1; H&#xe0;ng H&#xf3;a"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel16">
               <Properties>
-                <Property name="text" type="java.lang.String" value="T&#x1ed5;ng S&#x1ed1; L&#x1b0;&#x1ee3;ng Kh&#xe1;ch"/>
+                <Property name="text" type="java.lang.String" value="Gi&#xe1; Trung B&#xec;nh HH"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="dkTKKH1">
+            <Component class="javax.swing.JLabel" name="tkTSHH">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jLabel6"/>
+                <Property name="text" type="java.lang.String" value="tkTSHH"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="slTKKH1">
+            <Component class="javax.swing.JLabel" name="tkGTBHH">
               <Properties>
                 <Property name="text" type="java.lang.String" value="jLabel7"/>
               </Properties>

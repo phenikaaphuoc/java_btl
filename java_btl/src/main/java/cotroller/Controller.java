@@ -77,6 +77,21 @@ public class Controller {
             controller.showMessage("Xóa thành công ");
         }
     }
+    public void deleteSelectedRowHangHoa(JTable table) {
+        int selectedRow = table.getSelectedRow();
+
+        if (selectedRow != -1) { // Check if any row is selected
+            int selectedId = (int) table.getValueAt(selectedRow, 0);
+
+            // Remove the corresponding entry from the HashMap
+            entity.hangHoaMap.remove(selectedId);
+
+            // Remove the selected row from the table
+            DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+            tableModel.removeRow(selectedRow);
+            controller.showMessage("Xóa thành công ");
+        }
+    }
     public void addKhachHang(JTable table,int id ,String ten,String diaChi ,String sdt ){
         
         DefaultTableModel tableModel = (DefaultTableModel) table.getModel();

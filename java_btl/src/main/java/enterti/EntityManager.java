@@ -118,6 +118,21 @@ public final class EntityManager {
 
         return maxKey+1;
     }
+    public static float getGTBHH(){
+        if(hangHoaMap.size()==0){
+            return 0;
+        }
+        float value = 0;
+        Iterator<Map.Entry<Integer, HangHoa>> iterator = hangHoaMap.entrySet().iterator();
+
+        while (iterator.hasNext()) {
+            Map.Entry<Integer, HangHoa> entry = iterator.next();
+            HangHoa hangHoa = entry.getValue();
+
+            value +=hangHoa.gia;
+        }
+        return value/hangHoaMap.size();
+    }
 
 
     

@@ -64,6 +64,9 @@ public class main_form extends javax.swing.JFrame {
         else{
              dkTKKH.setText(String.valueOf(don/slkhach));
         }
+        int slhh = controller.entity.hangHoaMap.size();
+        tkTSHH.setText(String.valueOf(slhh));
+        tkGTBHH.setText(String.valueOf(controller.entity.getGTBHH()));
     }
     public void reloadAll(){
         cleanKHInput();
@@ -86,6 +89,7 @@ public class main_form extends javax.swing.JFrame {
         luuHH.setVisible(false);
         themHH.setVisible(true);
         controller.updateHangHoaTable(hangHoaMap, jtHH);
+        updateStatic();
         
     }
     public void fillInputHH( String id,  String ten,String  time, String gia,String idKH){
@@ -181,8 +185,8 @@ public class main_form extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        dkTKKH1 = new javax.swing.JLabel();
-        slTKKH1 = new javax.swing.JLabel();
+        tkTSHH = new javax.swing.JLabel();
+        tkGTBHH = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
@@ -562,13 +566,13 @@ public class main_form extends javax.swing.JFrame {
 
         jLabel14.setText("Số lLiệu Thống Kê");
 
-        jLabel15.setText("TB Số Lượng Đơn/Khách");
+        jLabel15.setText("Tổng Số Hàng Hóa");
 
-        jLabel16.setText("Tổng Số Lượng Khách");
+        jLabel16.setText("Giá Trung Bình HH");
 
-        dkTKKH1.setText("jLabel6");
+        tkTSHH.setText("tkTSHH");
 
-        slTKKH1.setText("jLabel7");
+        tkGTBHH.setText("jLabel7");
 
         jButton9.setText("Làm Mới ");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -621,8 +625,8 @@ public class main_form extends javax.swing.JFrame {
                                     .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(31, 31, 31)
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dkTKKH1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(slTKKH1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(tkTSHH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(tkGTBHH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap(533, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -646,11 +650,11 @@ public class main_form extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
-                            .addComponent(dkTKKH1))
+                            .addComponent(tkTSHH))
                         .addGap(27, 27, 27)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
-                            .addComponent(slTKKH1))))
+                            .addComponent(tkGTBHH))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -803,7 +807,9 @@ public class main_form extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        controller.deleteSelectedRowHangHoa(jtHH);
+        
+        reloadAllHH();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void luuHHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_luuHHActionPerformed
@@ -878,7 +884,6 @@ public class main_form extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbIDKH;
     private javax.swing.JTextField dcKH;
     private javax.swing.JLabel dkTKKH;
-    private javax.swing.JLabel dkTKKH1;
     private javax.swing.JTextField giaHH;
     private javax.swing.JLabel idHH;
     private javax.swing.JLabel idKH;
@@ -931,11 +936,12 @@ public class main_form extends javax.swing.JFrame {
     private javax.swing.JButton luuKH;
     private javax.swing.JTextField sdtKH;
     private javax.swing.JLabel slTKKH;
-    private javax.swing.JLabel slTKKH1;
     private javax.swing.JTextField tenHH;
     private javax.swing.JTextField tenKH;
     private javax.swing.JLabel tgHH;
     private javax.swing.JButton themHH;
     private javax.swing.JButton themKH;
+    private javax.swing.JLabel tkGTBHH;
+    private javax.swing.JLabel tkTSHH;
     // End of variables declaration//GEN-END:variables
 }
