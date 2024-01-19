@@ -109,6 +109,13 @@ public class Controller {
             controller.showMessage("Xóa thành công ");
         }
     }
+    public void searchHangHoaByIdKhachHang(JTable tabel,int id){
+       Map<Integer, HangHoa> result;
+       result = entity.getHangHoaByIdKH(id);
+       updateHangHoaTable(result, tabel);
+       
+    }
+    
     public void deleteSelectedRowNhanVien(JTable table) {
         int selectedRow = table.getSelectedRow();
 

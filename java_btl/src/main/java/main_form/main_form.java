@@ -198,7 +198,7 @@ public class main_form extends javax.swing.JFrame {
         luuHH = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jTextField2 = new javax.swing.JTextField();
+        tkHH = new javax.swing.JTextField();
         jButton8 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -606,6 +606,11 @@ public class main_form extends javax.swing.JFrame {
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Tên" }));
 
         jButton8.setText("Tìm Kiếm");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jLabel14.setText("Số lLiệu Thống Kê");
 
@@ -660,7 +665,7 @@ public class main_form extends javax.swing.JFrame {
                                         .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGap(56, 56, 56)))
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField2)
+                                    .addComponent(tkHH)
                                     .addComponent(jComboBox2, 0, 152, Short.MAX_VALUE)))
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -686,7 +691,7 @@ public class main_form extends javax.swing.JFrame {
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(44, 44, 44)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tkHH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton8))
                         .addGap(39, 39, 39)
                         .addComponent(jLabel14)
@@ -1145,6 +1150,15 @@ public class main_form extends javax.swing.JFrame {
        reloadAllNV();
     }//GEN-LAST:event_jButton17ActionPerformed
 
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        String text = tkHH.getText();
+        String selectedValue = String.valueOf(jComboBox2.getSelectedItem());
+        if (selectedValue == "ID"){
+            controller.searchHangHoaByIdKhachHang(jtHH, Integer.parseInt(text));
+        }
+        
+    }//GEN-LAST:event_jButton8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1265,7 +1279,6 @@ public class main_form extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTable jtHH;
     private javax.swing.JTable jtKH;
@@ -1285,6 +1298,7 @@ public class main_form extends javax.swing.JFrame {
     private javax.swing.JButton themKH;
     private javax.swing.JButton themNV;
     private javax.swing.JLabel tkGTBHH;
+    private javax.swing.JTextField tkHH;
     private javax.swing.JLabel tkTSHH;
     private javax.swing.JLabel tkTSNV;
     // End of variables declaration//GEN-END:variables

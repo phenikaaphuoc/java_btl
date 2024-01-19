@@ -76,6 +76,21 @@ public final class EntityManager {
             }
         }
     }
+    public void searchHangHoaByGia(float gia){
+        
+    }
+    public static Map<Integer, HangHoa> getHangHoaByIdKH(int id) {
+            Map<Integer, HangHoa> result = new HashMap<>();
+
+            for (Map.Entry<Integer, HangHoa> entry : hangHoaMap.entrySet()) {
+                HangHoa hangHoa = entry.getValue();
+                if (hangHoa.getIdKH() == id) {
+                    result.put(entry.getKey(), hangHoa);
+                }
+            }
+
+            return result;
+        }
     public void saveAllToFile() {
         String fileName = "nhanvien.dat";
         try (ObjectOutputStream oos = new ObjectOutputStream(
