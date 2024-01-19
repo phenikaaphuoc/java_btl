@@ -118,6 +118,20 @@ public final class EntityManager {
 
         return maxKey+1;
     }
+     public static int getMaxIDNV() {
+        if (nhanVienMap == null || nhanVienMap.isEmpty()) {
+            return 0;
+        }
+
+        int maxKey = Integer.MIN_VALUE;
+        for (int key : nhanVienMap.keySet()) {
+            if (key > maxKey) {
+                maxKey = key;
+            }
+        }
+
+        return maxKey+1;
+    }
     public static float getGTBHH(){
         if(hangHoaMap.size()==0){
             return 0;
@@ -135,10 +149,7 @@ public final class EntityManager {
     }
 
 
-    
-    
-    
-    
+   
     public void loadAllFromFile() {
         loadFromFile("hanghoa.dat", hangHoaMap);
         loadFromFile("nhanvien.dat", nhanVienMap);

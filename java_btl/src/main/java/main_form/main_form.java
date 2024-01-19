@@ -52,6 +52,7 @@ public class main_form extends javax.swing.JFrame {
     public void init_table(){
         controller.updateKhachHangTable(controller.entity.khachHangMap, jtKH);
         controller.updateHangHoaTable(controller.entity.hangHoaMap, jtHH);
+        controller.updateNhanVienTable(controller.entity.nhanVienMap,jtNV);
         updateStatic();
     }
     public void updateStatic(){
@@ -67,6 +68,8 @@ public class main_form extends javax.swing.JFrame {
         int slhh = controller.entity.hangHoaMap.size();
         tkTSHH.setText(String.valueOf(slhh));
         tkGTBHH.setText(String.valueOf(controller.entity.getGTBHH()));
+        int slnv = controller.entity.nhanVienMap.size();
+        tkTSNV.setText(String.valueOf(slnv));
     }
     public void reloadAll(){
         cleanKHInput();
@@ -75,6 +78,7 @@ public class main_form extends javax.swing.JFrame {
         luuKH.setVisible(false);
         themKH.setVisible(true);
         reloadAllHH();
+        reloadAllNV();
     }
     public void reloadAllHH(){
         idHH.setText(String.valueOf(controller.entity.getMaxIDKH(hangHoaMap)));
@@ -91,6 +95,20 @@ public class main_form extends javax.swing.JFrame {
         controller.updateHangHoaTable(hangHoaMap, jtHH);
         updateStatic();
         
+    }
+    public void reloadAllNV(){
+        luuNV.setVisible(false);
+        themNV.setVisible(true);
+        updateStatic();
+        cleanNVInput();
+        String currentTime = controller.getCurrentTime();
+        tgNV.setText(currentTime);
+        
+    }
+    public void cleanNVInput(){
+        idNV.setText(String.valueOf(controller.entity.getMaxIDNV()));
+        tenNV.setText("");
+        luongNV.setText("");
     }
     public void fillInputHH( String id,  String ten,String  time, String gia,String idKH){
         idHH.setText(id);
@@ -188,6 +206,31 @@ public class main_form extends javax.swing.JFrame {
         tkTSHH = new javax.swing.JLabel();
         tkGTBHH = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
+        jPanel12 = new javax.swing.JPanel();
+        jPanel13 = new PanelShadow();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        tenNV = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        Gia1 = new javax.swing.JLabel();
+        luongNV = new javax.swing.JTextField();
+        idNV = new javax.swing.JLabel();
+        tgNV = new javax.swing.JLabel();
+        jPanel14 = new PanelShadow();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jtNV = new javax.swing.JTable();
+        themNV = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
+        luuNV = new javax.swing.JButton();
+        jLabel29 = new javax.swing.JLabel();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        jTextField4 = new javax.swing.JTextField();
+        jButton16 = new javax.swing.JButton();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        tkTSNV = new javax.swing.JLabel();
+        jButton17 = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
@@ -668,6 +711,221 @@ public class main_form extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Hàng Hóa", jPanel6);
 
+        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel25.setText("ID");
+
+        jLabel26.setText("Tên");
+
+        jLabel27.setText("Thời Gian");
+
+        Gia1.setText("Lương");
+
+        idNV.setText("jLabel11");
+
+        tgNV.setText("jLabel13");
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(idNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addComponent(jLabel27)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tgNV, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(49, 49, 49)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Gia1, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tenNV)
+                    .addComponent(luongNV, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel25)
+                    .addComponent(jLabel26)
+                    .addComponent(tenNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idNV))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tgNV, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel27)
+                        .addComponent(Gia1)
+                        .addComponent(luongNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(45, 45, 45))
+        );
+
+        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
+
+        jtNV.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jtNV);
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        themNV.setText("Thêm");
+        themNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                themNVActionPerformed(evt);
+            }
+        });
+
+        jButton14.setText("Sửa ");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+
+        jButton15.setText("Xóa");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+
+        luuNV.setText("Lưu");
+        luuNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                luuNVActionPerformed(evt);
+            }
+        });
+
+        jLabel29.setText("Tìm kiếm theo");
+
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Tên" }));
+
+        jButton16.setText("Tìm Kiếm");
+
+        jLabel30.setText("Số lLiệu Thống Kê");
+
+        jLabel31.setText("Tổng số nhân viên");
+
+        tkTSNV.setText("tkTSHH");
+
+        jButton17.setText("Làm Mới ");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(106, 106, 106)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addComponent(themNV, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54)
+                        .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addComponent(jButton17)
+                        .addGap(50, 50, 50)
+                        .addComponent(luuNV, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(113, 113, 113)
+                        .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel12Layout.createSequentialGroup()
+                                        .addGap(3, 3, 3)
+                                        .addComponent(jLabel29)
+                                        .addGap(57, 57, 57))
+                                    .addGroup(jPanel12Layout.createSequentialGroup()
+                                        .addComponent(jButton16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(56, 56, 56)))
+                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextField4)
+                                    .addComponent(jComboBox4, 0, 152, Short.MAX_VALUE)))
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addComponent(jLabel31)
+                                .addGap(31, 31, 31)
+                                .addComponent(tkTSNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap(533, Short.MAX_VALUE))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(44, 44, 44)
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton16))
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel30)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel31)
+                            .addComponent(tkTSNV))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(themNV)
+                        .addComponent(jButton14)
+                        .addComponent(jButton15))
+                    .addComponent(luuNV)
+                    .addComponent(jButton17))
+                .addContainerGap(52, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Nhân Viên", jPanel12);
+
         jMenu3.setText("File");
         jMenuBar2.add(jMenu3);
 
@@ -693,106 +951,39 @@ public class main_form extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        controller.deleteSelectedRow(jtKH);
-        updateStatic();
-        reloadAllHH();
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void themKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themKHActionPerformed
-
-    try {
-        // Get data from user input or any other source
-        int id = Integer.parseInt(idKH.getText());
-        String ten = tenKH.getText();
-        String diaChi = dcKH.getText();
-        String sdt = sdtKH.getText();
-        controller.addKhachHang(jtKH, id, ten, diaChi, sdt);
-        
-        
-    } catch (NumberFormatException e) {
-        controller.showMessage(e.getMessage());
-        
-       
-    }
-     
-    
-   
-    cleanKHInput();
-    controller.updateID(idKH);
-    updateStatic();
-    reloadAllHH();
-    }//GEN-LAST:event_themKHActionPerformed
-
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         controller.entity.saveAllToFile();
     }//GEN-LAST:event_formWindowClosing
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        reloadAll();
-        
-    }//GEN-LAST:event_jButton6ActionPerformed
+        reloadAllHH();
+    }//GEN-LAST:event_jButton9ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int selectedRow = jtKH.getSelectedRow();
-          
-        if (selectedRow != -1) { // Check if any row is selected
-            String id = String.valueOf(jtKH.getValueAt(selectedRow, 0));
-            String ten = String.valueOf(jtKH.getValueAt(selectedRow, 1));
-            String diachi = String.valueOf(jtKH.getValueAt(selectedRow, 2));
-            String sdt = String.valueOf(jtKH.getValueAt(selectedRow, 3));
-            fillKHInput(id, ten, diachi, sdt);
-            
-            luuKH.setVisible(true);
-            themKH.setVisible(false);
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void luuKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_luuKHActionPerformed
+    private void luuHHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_luuHHActionPerformed
         boolean check = true;
         try {
+            controller.suaHangHoa(jtHH,  idHH.getText(), tenHH.getText(), tgHH.getText(), giaHH.getText(), Integer.parseInt((String) cbIDKH.getSelectedItem()));
 
-                controller.suaKhachHang(jtKH,  Integer.parseInt(idKH.getText()), tenKH.getText(), dcKH.getText(), sdtKH.getText());
-                themKH.setVisible(true);
-                reloadAll();
-           
         } catch (NumberFormatException e) {
-                controller.showMessage(e.getMessage());
-                check = false;
-       }
+            controller.showMessage(e.getMessage());
+            check = false;
+        }
         if (check == true){
             controller.showMessage("Sửa thành công");
         }
-      
-    }//GEN-LAST:event_luuKHActionPerformed
+        reloadAllHH();
+    }//GEN-LAST:event_luuHHActionPerformed
 
-    private void themHHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themHHActionPerformed
-    boolean check = true;
-    try {
-        // Get data from user input or any other source
-        int id = Integer.parseInt(idHH.getText());
-        String ten = tenHH.getText();
-        String time = tgHH.getText();
-        float gia = Float.parseFloat(giaHH.getText());
-        int idKH =  Integer.parseInt((String) cbIDKH.getSelectedItem());
-        controller.addHangHoa(jtHH, id, ten, time, gia,idKH);
-       
-    } catch (NumberFormatException e) {
-        controller.showMessage(e.getMessage());
-        check = false;
-    }
-    reloadAllHH();
-    if (check == true){
-            controller.showMessage("Sửa thành công");
-        }
-    }//GEN-LAST:event_themHHActionPerformed
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        controller.deleteSelectedRowHangHoa(jtHH);
+
+        reloadAllHH();
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-         int selectedRow = jtHH.getSelectedRow();
-          
+        int selectedRow = jtHH.getSelectedRow();
+
         if (selectedRow != -1) { // Check if any row is selected
             String id = String.valueOf(jtHH.getValueAt(selectedRow, 0));
             String ten = String.valueOf(jtHH.getValueAt(selectedRow, 1));
@@ -800,37 +991,159 @@ public class main_form extends javax.swing.JFrame {
             String gia = String.valueOf(jtHH.getValueAt(selectedRow, 3));
             String idKH = String.valueOf(jtHH.getValueAt(selectedRow, 4));
             fillInputHH(id, ten, time,gia, idKH);
-            
+
             luuHH.setVisible(true);
             themHH.setVisible(false);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        controller.deleteSelectedRowHangHoa(jtHH);
-        
-        reloadAllHH();
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void luuHHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_luuHHActionPerformed
+    private void themHHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themHHActionPerformed
         boolean check = true;
         try {
-                controller.suaHangHoa(jtHH,  idHH.getText(), tenHH.getText(), tgHH.getText(), giaHH.getText(), Integer.parseInt((String) cbIDKH.getSelectedItem()));
+            // Get data from user input or any other source
+            int id = Integer.parseInt(idHH.getText());
+            String ten = tenHH.getText();
+            String time = tgHH.getText();
+            float gia = Float.parseFloat(giaHH.getText());
+            int idKH =  Integer.parseInt((String) cbIDKH.getSelectedItem());
+            controller.addHangHoa(jtHH, id, ten, time, gia,idKH);
 
         } catch (NumberFormatException e) {
-                controller.showMessage(e.getMessage());
-                check = false;
-       }
+            controller.showMessage(e.getMessage());
+            check = false;
+        }
+        reloadAllHH();
         if (check == true){
             controller.showMessage("Sửa thành công");
         }
-        reloadAllHH();
-    }//GEN-LAST:event_luuHHActionPerformed
+    }//GEN-LAST:event_themHHActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        reloadAll();
+
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void luuKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_luuKHActionPerformed
+        boolean check = true;
+        try {
+
+            controller.suaKhachHang(jtKH,  Integer.parseInt(idKH.getText()), tenKH.getText(), dcKH.getText(), sdtKH.getText());
+            themKH.setVisible(true);
+            reloadAll();
+
+        } catch (NumberFormatException e) {
+            controller.showMessage(e.getMessage());
+            check = false;
+        }
+        if (check == true){
+            controller.showMessage("Sửa thành công");
+        }
+
+    }//GEN-LAST:event_luuKHActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        controller.deleteSelectedRow(jtKH);
+        updateStatic();
         reloadAllHH();
-    }//GEN-LAST:event_jButton9ActionPerformed
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int selectedRow = jtKH.getSelectedRow();
+
+        if (selectedRow != -1) { // Check if any row is selected
+            String id = String.valueOf(jtKH.getValueAt(selectedRow, 0));
+            String ten = String.valueOf(jtKH.getValueAt(selectedRow, 1));
+            String diachi = String.valueOf(jtKH.getValueAt(selectedRow, 2));
+            String sdt = String.valueOf(jtKH.getValueAt(selectedRow, 3));
+            fillKHInput(id, ten, diachi, sdt);
+
+            luuKH.setVisible(true);
+            themKH.setVisible(false);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void themKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themKHActionPerformed
+
+        try {
+            // Get data from user input or any other source
+            int id = Integer.parseInt(idKH.getText());
+            String ten = tenKH.getText();
+            String diaChi = dcKH.getText();
+            String sdt = sdtKH.getText();
+            controller.addKhachHang(jtKH, id, ten, diaChi, sdt);
+
+        } catch (NumberFormatException e) {
+            controller.showMessage(e.getMessage());
+
+        }
+
+        cleanKHInput();
+        controller.updateID(idKH);
+        updateStatic();
+        reloadAllHH();
+    }//GEN-LAST:event_themKHActionPerformed
+
+    private void themNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themNVActionPerformed
+         try {
+            // Get data from user input or any other source
+            int id = Integer.parseInt(idNV.getText());
+            String ten = tenNV.getText();
+            String time = tgNV.getText();
+            float luong  = Float.parseFloat(luongNV.getText());
+            controller.addNhanVien(jtNV, id, ten, time, luong);
+            cleanNVInput();
+
+        } catch (NumberFormatException e) {
+            controller.showMessage(e.getMessage());
+
+        }
+
+        cleanKHInput();
+        controller.updateID(idKH);
+        updateStatic();
+        reloadAllHH();
+    }//GEN-LAST:event_themNVActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+         int selectedRow = jtNV.getSelectedRow();
+
+        if (selectedRow != -1) { // Check if any row is selected
+            String id = String.valueOf(jtNV.getValueAt(selectedRow, 0));
+            String ten = String.valueOf(jtNV.getValueAt(selectedRow, 1));
+            String time = String.valueOf(jtNV.getValueAt(selectedRow, 2));
+            String luong = String.valueOf(jtNV.getValueAt(selectedRow, 3));
+            fillNVInput(id, ten, time,luong);
+            luuNV.setVisible(true);
+            themNV.setVisible(false);
+        }
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        controller.deleteSelectedRowHangHoa(jtNV);
+        reloadAllNV();
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void luuNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_luuNVActionPerformed
+    boolean check = true;
+    try {
+        controller.suaNhanVien(jtNV,  idNV.getText(), tenNV.getText(), tgNV.getText(), luongNV.getText());
+
+        } catch (NumberFormatException e) {
+            controller.showMessage(e.getMessage());
+            check = false;
+        }
+        if (check == true){
+            controller.showMessage("Sửa thành công");
+        }
+        reloadAllNV();
+    }//GEN-LAST:event_luuNVActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+       reloadAllNV();
+    }//GEN-LAST:event_jButton17ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -846,6 +1159,12 @@ public class main_form extends javax.swing.JFrame {
         tenKH.setText(ten);
         dcKH.setText(diachi);
         sdtKH.setText(sdt);
+    }
+     public void fillNVInput(String id,String ten ,String time,String luong){
+        idNV.setText(id);
+        tenNV.setText(ten);
+        tgNV.setText(time);
+        luongNV.setText(luong);
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -881,12 +1200,18 @@ public class main_form extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Gia;
+    private javax.swing.JLabel Gia1;
     private javax.swing.JComboBox<String> cbIDKH;
     private javax.swing.JTextField dcKH;
     private javax.swing.JLabel dkTKKH;
     private javax.swing.JTextField giaHH;
     private javax.swing.JLabel idHH;
     private javax.swing.JLabel idKH;
+    private javax.swing.JLabel idNV;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -897,6 +1222,7 @@ public class main_form extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -906,7 +1232,13 @@ public class main_form extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -919,6 +1251,9 @@ public class main_form extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -927,21 +1262,30 @@ public class main_form extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JTable jtHH;
     private javax.swing.JTable jtKH;
+    private javax.swing.JTable jtNV;
+    private javax.swing.JTextField luongNV;
     private javax.swing.JButton luuHH;
     private javax.swing.JButton luuKH;
+    private javax.swing.JButton luuNV;
     private javax.swing.JTextField sdtKH;
     private javax.swing.JLabel slTKKH;
     private javax.swing.JTextField tenHH;
     private javax.swing.JTextField tenKH;
+    private javax.swing.JTextField tenNV;
     private javax.swing.JLabel tgHH;
+    private javax.swing.JLabel tgNV;
     private javax.swing.JButton themHH;
     private javax.swing.JButton themKH;
+    private javax.swing.JButton themNV;
     private javax.swing.JLabel tkGTBHH;
     private javax.swing.JLabel tkTSHH;
+    private javax.swing.JLabel tkTSNV;
     // End of variables declaration//GEN-END:variables
 }

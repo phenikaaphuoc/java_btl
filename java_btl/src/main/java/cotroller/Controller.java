@@ -8,6 +8,7 @@ package cotroller;
 import enterti.EntityManager;
 import enterti.HangHoa;
 import enterti.KhachHang;
+import enterti.NhanVien;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
@@ -44,7 +45,7 @@ public class Controller {
 
         return tableModel;
     }
-        public DefaultTableModel updateHangHoaTable(Map<Integer, HangHoa> hangHoaMap, JTable table) {
+    public DefaultTableModel updateHangHoaTable(Map<Integer, HangHoa> hangHoaMap, JTable table) {
         DefaultTableModel tableModel = new DefaultTableModel();
         tableModel.addColumn("ID");
         tableModel.addColumn("Tên");
@@ -54,6 +55,22 @@ public class Controller {
 
         for (HangHoa hangHoa : hangHoaMap.values()) {
             Object[] rowData = {hangHoa.getId(), hangHoa.getTen(), hangHoa.getTime(), hangHoa.getGia(),hangHoa.getIdKH()};
+            tableModel.addRow(rowData);
+        }
+
+        table.setModel(tableModel); // Set the new model to the table directly
+
+        return tableModel;
+    }
+    public DefaultTableModel updateNhanVienTable(Map<Integer, NhanVien> nhanVienMap, JTable table) {
+        DefaultTableModel tableModel = new DefaultTableModel();
+        tableModel.addColumn("ID");
+        tableModel.addColumn("Tên");
+        tableModel.addColumn("Thời gian");
+        tableModel.addColumn("Lương");
+
+        for (NhanVien nhanVien : nhanVienMap.values()) {
+            Object[] rowData = {nhanVien.Id, nhanVien.ten,nhanVien.begin,nhanVien.luong};
             tableModel.addRow(rowData);
         }
 
@@ -84,13 +101,44 @@ public class Controller {
             int selectedId = (int) table.getValueAt(selectedRow, 0);
 
             // Remove the corresponding entry from the HashMap
-            entity.hangHoaMap.remove(selectedId);
+            entity.nhanVienMap.remove(selectedId);
 
             // Remove the selected row from the table
             DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
             tableModel.removeRow(selectedRow);
             controller.showMessage("Xóa thành công ");
         }
+    }
+    public void deleteSelectedRowNhanVien(JTable table) {
+        int selectedRow = table.getSelectedRow();
+
+        if (selectedRow != -1) { // Check if any row is selected
+            int selectedId = (int) table.getValueAt(selectedRow, 0);
+            entity.nhanVienMap.remove(selectedId);
+            DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+            tableModel.removeRow(selectedRow);
+            controller.showMessage("Xóa thành công ");
+        }
+    }
+    public void suaNhanVien(JTable table,  String id,String ten,String time, String luong){
+        DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+        
+        try {
+            
+            NhanVien nhanvien = new NhanVien(Integer.parseInt(id), ten, time, Float.parseFloat(luong));
+            Object[] rowData = {nhanvien.Id, nhanvien.ten, nhanvien.begin, nhanvien.luong};
+            entity.nhanVienMap.remove(id);
+            entity.nhanVienMap.put(nhanvien.Id, nhanvien);
+            for (int i = tableModel.getRowCount() - 1; i >= 0; i--) {
+                if (Integer.parseInt(tableModel.getValueAt(i, 0).toString()) == nhanvien.Id) {
+                    tableModel.removeRow(i);
+                }
+            }
+            tableModel.addRow(rowData);
+        } catch (IllegalArgumentException e) {
+            // Handle the case where idKH.getText() cannot be parsed as an integer
+            showMessage(e.getMessage()); // Handle the exception appropriately
+        }   
     }
     public void addKhachHang(JTable table,int id ,String ten,String diaChi ,String sdt ){
         
@@ -126,6 +174,22 @@ public class Controller {
             // Handle the case where idKH.getText() cannot be parsed as an integer
             showMessage(e.getMessage()); // Handle the exception appropriately
         }   
+    }
+    public void addNhanVien(JTable table,int id,String ten,String time,float luong){
+        boolean check = true;
+        DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+        try {
+            NhanVien nhanvien = new NhanVien(id, ten, time, luong);
+            Object[] rowData = {nhanvien.Id, nhanvien.ten,nhanvien.begin,nhanvien.luong};
+            tableModel.addRow(rowData);
+            entity.nhanVienMap.put(id, nhanvien);
+        } catch (IllegalArgumentException e) {
+            check = false;
+            showMessage(e.getMessage()); // Handle the exception appropriately
+        } 
+        if (check == true){
+            showMessage("Them thanh cong");
+        }
     }
     
     public void suaKhachHang(JTable table,int id ,String ten,String diaChi ,String sdt ){
