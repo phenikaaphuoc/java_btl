@@ -79,6 +79,7 @@ public class main_form extends javax.swing.JFrame {
         themKH.setVisible(true);
         reloadAllHH();
         reloadAllNV();
+        controller.updateKhachHangTable(controller.entity.khachHangMap, jtKH);
     }
     public void reloadAllHH(){
         idHH.setText(String.valueOf(controller.entity.getMaxIDKH(hangHoaMap)));
@@ -367,6 +368,11 @@ public class main_form extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Tên" }));
 
         jButton5.setText("Tìm Kiếm");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Số lLiệu Thống Kê");
 
@@ -838,6 +844,11 @@ public class main_form extends javax.swing.JFrame {
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Tên" }));
 
         jButton16.setText("Tìm Kiếm");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
 
         jLabel30.setText("Số lLiệu Thống Kê");
 
@@ -1015,12 +1026,10 @@ public class main_form extends javax.swing.JFrame {
 
         } catch (NumberFormatException e) {
             controller.showMessage(e.getMessage());
-            check = false;
+          
         }
         reloadAllHH();
-        if (check == true){
-            controller.showMessage("Sửa thành công");
-        }
+        
     }//GEN-LAST:event_themHHActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -1153,11 +1162,61 @@ public class main_form extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         String text = tkHH.getText();
         String selectedValue = String.valueOf(jComboBox2.getSelectedItem());
-        if (selectedValue == "ID"){
-            controller.searchHangHoaByIdKhachHang(jtHH, Integer.parseInt(text));
+       if(text == null || text.isEmpty()){
+            controller.showMessage("Nhap vao thong tin can tim kiem");
+            return ;
+        }
+       if ("ID".equals(selectedValue)) {
+            try {
+                int id = Integer.parseInt(text);
+                controller.searchHangHoaByIdKhachHang(jtHH, id);
+            } catch (NumberFormatException e) {
+                controller.showMessage("Nhap vao mot so nguyen hop le cho ID");
+            }
+        } else {
+            controller.searchHangHoaByTen(jtHH, text);
         }
         
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        String text = jTextField1.getText();
+        String selectedValue = String.valueOf(jComboBox1.getSelectedItem());
+       if(text == null || text.isEmpty()){
+            controller.showMessage("Nhap vao thong tin can tim kiem");
+            return ;
+        }
+       if ("ID".equals(selectedValue)) {
+            try {
+                int id = Integer.parseInt(text);
+                controller.searchKhachHangByID(jtKH, id);
+            } catch (NumberFormatException e) {
+                controller.showMessage("Nhap vao mot so nguyen hop le cho ID");
+            }
+        } else {
+            controller.searchKhachHangByTen(jtKH, text);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+         String text = jTextField4.getText();
+        String selectedValue = String.valueOf(jComboBox4.getSelectedItem());
+       if(text == null || text.isEmpty()){
+            controller.showMessage("Nhap vao thong tin can tim kiem");
+            return ;
+        }
+       if ("ID".equals(selectedValue)) {
+            try {
+                int id = Integer.parseInt(text);
+                controller.searchKhachHangByID(jtKH, id);
+            } catch (NumberFormatException e) {
+                controller.showMessage("Nhap vao mot so nguyen hop le cho ID");
+            }
+        } else {
+            controller.searchKhachHangByTen(jtKH, text);
+        }
+    
+    }//GEN-LAST:event_jButton16ActionPerformed
 
     /**
      * @param args the command line arguments

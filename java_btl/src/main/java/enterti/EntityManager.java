@@ -91,6 +91,66 @@ public final class EntityManager {
 
             return result;
         }
+    public static Map<Integer, KhachHang> getKhachHangByID(int id) {
+            Map<Integer, KhachHang> result = new HashMap<>();
+
+            for (Map.Entry<Integer, KhachHang> entry : khachHangMap.entrySet()) {
+                KhachHang khachhang = entry.getValue();
+                if (khachhang.getId()== id) {
+                    result.put(entry.getKey(), khachhang);
+                }
+            }
+
+            return result;
+        }
+    public static Map<Integer, NhanVien> getNhanVienByID(int id) {
+            Map<Integer, NhanVien> result = new HashMap<>();
+
+            for (Map.Entry<Integer, NhanVien> entry : nhanVienMap.entrySet()) {
+                NhanVien nhanvien = entry.getValue();
+                if (nhanvien.getId()== id) {
+                    result.put(entry.getKey(), nhanvien);
+                }
+            }
+
+            return result;
+        }
+    public static Map<Integer, HangHoa> getHangHoaByTen(String  ten) {
+            Map<Integer, HangHoa> result = new HashMap<>();
+
+            for (Map.Entry<Integer, HangHoa> entry : hangHoaMap.entrySet()) {
+                HangHoa hangHoa = entry.getValue();
+                if (hangHoa.getTen().equals(ten)) {
+                    result.put(entry.getKey(), hangHoa);
+                }
+            }
+
+            return result;
+    }
+    public static Map<Integer, KhachHang> getKhachHangByTen(String  ten) {
+            Map<Integer, KhachHang> result = new HashMap<>();
+
+            for (Map.Entry<Integer, KhachHang> entry : khachHangMap.entrySet()) {
+                KhachHang khachhang = entry.getValue();
+                if (khachhang.getTen().equals(ten)) {
+                    result.put(entry.getKey(), khachhang);
+                }
+            }
+
+            return result;
+    }
+    public static Map<Integer, NhanVien> getNhanVienByTen(String  ten) {
+            Map<Integer, NhanVien> result = new HashMap<>();
+
+            for (Map.Entry<Integer, NhanVien> entry : nhanVienMap.entrySet()) {
+                NhanVien nhanvien = entry.getValue();
+                if (nhanvien.getTen().equals(ten)) {
+                    result.put(entry.getKey(), nhanvien);
+                }
+            }
+
+            return result;
+    }
     public void saveAllToFile() {
         String fileName = "nhanvien.dat";
         try (ObjectOutputStream oos = new ObjectOutputStream(

@@ -115,6 +115,37 @@ public class Controller {
        updateHangHoaTable(result, tabel);
        
     }
+    public void searchKhachHangByID(JTable tabel,int id){
+       Map<Integer, KhachHang> result;
+       result = entity.getKhachHangByID(id);
+       updateKhachHangTable(result, tabel);
+       
+    }
+    public void searchNhanVienByID(JTable tabel,int id){
+       Map<Integer, NhanVien> result;
+       result = entity.getNhanVienByID(id);
+       updateNhanVienTable(result, tabel);
+       
+    }
+    public void searchNhanVienByName(JTable tabel,String name){
+       Map<Integer, NhanVien> result;
+       result = entity.getNhanVienByTen(name);
+       updateNhanVienTable(result, tabel);
+       
+    }
+    
+    public void searchKhachHangByTen(JTable tabel,String ten){
+       Map<Integer, KhachHang> result;
+       result = entity.getKhachHangByTen(ten);
+       updateKhachHangTable(result, tabel);
+       
+    }
+    public void searchHangHoaByTen(JTable tabel,String ten){
+       Map<Integer, HangHoa> result;
+       result = entity.getHangHoaByTen(ten);
+       updateHangHoaTable(result, tabel);
+       
+    }
     
     public void deleteSelectedRowNhanVien(JTable table) {
         int selectedRow = table.getSelectedRow();
@@ -172,15 +203,20 @@ public class Controller {
     
     public void addHangHoa(JTable table, int id,  String ten,String  time, float gia,int idKH){
         DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+        boolean check = true;
         try {
             HangHoa hanghoa = new HangHoa(id, ten, time, gia, idKH);
             Object[] rowData = {hanghoa.getId(), hanghoa.getTen(), hanghoa.getTime(), hanghoa.getGia(),hanghoa.getidKH()};
             tableModel.addRow(rowData);
             entity.hangHoaMap.put(id, hanghoa);
         } catch (IllegalArgumentException e) {
+            check = false;
             // Handle the case where idKH.getText() cannot be parsed as an integer
             showMessage(e.getMessage()); // Handle the exception appropriately
-        }   
+        }  
+        if(check == true){
+            showMessage("Them thanh cong");
+        }
     }
     public void addNhanVien(JTable table,int id,String ten,String time,float luong){
         boolean check = true;
