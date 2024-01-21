@@ -104,6 +104,7 @@ public class main_form extends javax.swing.JFrame {
         cleanNVInput();
         String currentTime = controller.getCurrentTime();
         tgNV.setText(currentTime);
+        controller.updateNhanVienTable(controller.entity.nhanVienMap, jtNV);
         
     }
     public void cleanNVInput(){
@@ -1199,7 +1200,7 @@ public class main_form extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-         String text = jTextField4.getText();
+        String text = jTextField4.getText();
         String selectedValue = String.valueOf(jComboBox4.getSelectedItem());
        if(text == null || text.isEmpty()){
             controller.showMessage("Nhap vao thong tin can tim kiem");
@@ -1208,12 +1209,12 @@ public class main_form extends javax.swing.JFrame {
        if ("ID".equals(selectedValue)) {
             try {
                 int id = Integer.parseInt(text);
-                controller.searchKhachHangByID(jtKH, id);
+                controller.searchNhanVienByID(jtNV, id);
             } catch (NumberFormatException e) {
                 controller.showMessage("Nhap vao mot so nguyen hop le cho ID");
             }
         } else {
-            controller.searchKhachHangByTen(jtKH, text);
+            controller.searchNhanVienByName(jtNV, text);
         }
     
     }//GEN-LAST:event_jButton16ActionPerformed
