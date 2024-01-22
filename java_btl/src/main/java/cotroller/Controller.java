@@ -101,7 +101,7 @@ public class Controller {
             int selectedId = (int) table.getValueAt(selectedRow, 0);
 
             // Remove the corresponding entry from the HashMap
-            entity.nhanVienMap.remove(selectedId);
+            entity.hangHoaMap.remove(selectedId);
 
             // Remove the selected row from the table
             DefaultTableModel tableModel = (DefaultTableModel) table.getModel();

@@ -239,16 +239,14 @@ public class login extends javax.swing.JFrame {
         String tk = txttk.getText();
         String mk = txtmk.getText();
         
-        if (controller.entity.nhanVienMap.containsKey(tk) || controller.entity.nhanVienMap.get(tk) != null||"admin".equals(tk)) {
+        if ( "admin".equals(tk ) && "1".equals(mk)) {
         // The map contains the key, and the associated value is not null
         // Do something, for example, print "true"
         main_form form = new main_form();  // Create an instance of MainForm
         form.setVisible(true); 
         this.setVisible(false);
     } else {
-        // Either the key is not present in the map or the associated value is null
-        // Do something else, for example, print "false"
-        System.out.println(false);
+        controller.showMessage("Sai tài khoản hoặc mật khẩu");
     }
     }//GEN-LAST:event_jButton1ActionPerformed
 
